@@ -1,53 +1,56 @@
 # ~/nixos-config/modules/home/apps.nix
 # User packages — add your apps here
-{ config, pkgs, lib, pkgs-unstable, inputs, ... }:
+#
+# Pattern: use unstable.<name> for any package pulled from nixpkgs-unstable.
+# This avoids collisions with system-level packages (which use stable pkgs).
+# To switch a package to unstable, rename it to unstable.<name>.
+# To switch back to stable, rename it to just <name>.
+{ config, pkgs, lib, pkgs-unstable, ... }:
 
 let
   unstable = pkgs-unstable;
 in {
   home.packages = with pkgs; [
-    # ── Development ──────────────────────────────────────────
-    git
-    gh                    # GitHub CLI
+    # ── Development (unstable) ────────────────────────────────
+    unstable.git
+    unstable.gh                    # GitHub CLI
     unstable.vscodium
-    lazygit               # Git TUI
-    delta                 # Better git diffs
+    unstable.lazygit               # Git TUI
+    unstable.delta                 # Better git diffs
 
-    # ── CLI tools ────────────────────────────────────────────
-    ripgrep
-    nodejs
-    fd
-    eza
-    bat
-    fzf
-    zoxide                # Smarter cd
-    starship              # Shell prompt
-    btop
-    fastfetch
-    jq
-    yq
-    tree
-    unzip
-    p7zip
-    wget
-    curlie                # curl with httpie syntax
+    # ── CLI tools (unstable) ──────────────────────────────────
+    unstable.ripgrep
+    unstable.nodejs
+    unstable.fd
+    unstable.eza
+    unstable.bat
+    unstable.fzf
+    unstable.starship              # Shell prompt
+    unstable.btop
+    unstable.fastfetch
+    unstable.jq
+    unstable.yq
+    unstable.tree
+    unstable.unzip
+    unstable.p7zip
+    unstable.wget
+    unstable.curlie                # curl with httpie syntax
 
-    # ── Media ────────────────────────────────────────────────
-    mpv
-    imv
-    ffmpeg
+    # ── Media (unstable) ──────────────────────────────────────
+    unstable.mpv
+    unstable.imv
+    unstable.ffmpeg
 
-    # ── Communication ────────────────────────────────────────
+    # ── Communication (unstable) ──────────────────────────────
     unstable.discord
     unstable.telegram-desktop
     unstable.ayugram-desktop
-    
-    # ── Misc ─────────────────────────────────────────────────
-    gnome-secrets
-    keepassxc
+
+    # ── Misc (unstable) ───────────────────────────────────────
+    unstable.gnome-secrets
+    unstable.keepassxc
     unstable.obsidian
-    libreoffice-fresh
-    tradingview
-    
+    unstable.libreoffice-fresh
+    unstable.tradingview
   ];
 }

@@ -68,6 +68,7 @@
   programs.starship = {
     enable = true;
     enableFishIntegration = true;
+    package = pkgs-unstable.starship;
     settings = {
       add_newline = true;
       format = "$directory$git_branch$git_status$character";
@@ -82,20 +83,24 @@
   programs.zoxide = {
     enable = true;
     enableFishIntegration = true;
+    package = pkgs-unstable.zoxide;
   };
 
   # ── FZF ──────────────────────────────────────────────────
   programs.fzf = {
     enable = true;
     enableFishIntegration = true;
+    package = pkgs-unstable.fzf;
   };
 
   # ── Git ───────────────────────────────────────────────────
   programs.git = {
     enable = true;
+    package = pkgs-unstable.git;
     userName = "ChiengPViphop";
     userEmail = "phouvongviphop@protonmail.com";
     delta.enable = true;
+    delta.package = pkgs-unstable.delta;
     extraConfig = {
       init.defaultBranch = "main";
       push.autoSetupRemote = true;
@@ -108,6 +113,7 @@
   programs.helix = {
     enable = true;
     defaultEditor = true;
+    package = pkgs-unstable.helix;
     settings = {
       theme = "catppuccin_mocha";
       editor = {
@@ -136,6 +142,7 @@
   # ── Alacritty terminal ────────────────────────────────────
   programs.alacritty = {
     enable = true;
+    package = pkgs-unstable.alacritty;
     settings = {
       font = {
         normal.family = "JetBrainsMono Nerd Font";
@@ -150,19 +157,23 @@
   # ── Fastfetch ─────────────────────────────────────────────
   programs.fastfetch = {
     enable = true;
+    package = pkgs-unstable.fastfetch;
   };
 
   # ── Btop ──────────────────────────────────────────────────
-  programs.btop = {    enable = true;
+  programs.btop = {
+    enable = true;
+    package = pkgs-unstable.btop;
     settings = {
       color_theme = "TTY";
       theme_background = false;
     };
   };
 
- # ---Swaylock ──────────────────────────────────────────────
+  # ── Swaylock ──────────────────────────────────────────────
   programs.swaylock = {
     enable = true;
+    package = pkgs-unstable.swaylock-effects;
     settings = {
       color = "1e1e2e";
       font = "JetBrainsMono Nerd Font";

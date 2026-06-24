@@ -70,9 +70,8 @@ in {
     capitaine-cursors
     papirus-icon-theme
 
-    # Media
+    # Media (mpv provided via Home Manager)
     imv                 # Image viewer (Wayland)
-    mpv                 # Video player
     loupe               # GNOME image viewer
 
     # Authentication agent

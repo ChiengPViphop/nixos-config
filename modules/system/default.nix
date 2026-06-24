@@ -1,7 +1,7 @@
 # ~/nixos-config/modules/system/default.nix
 # Core system configuration
 
-{ config, pkgs, lib, pkgs-unstable, username, hostname, inputs, ... }:
+{ config, pkgs, lib, username, hostname, inputs, ... }:
 
 {
   # ── Hostname ──────────────────────────────────────────────
@@ -87,28 +87,19 @@
     vim
     wget
     curl
-    git
     htop
-    fastfetch
     unzip
     psmisc
     usbutils
     pciutils
     neovim
-    micro   
+    micro
 
     # Networking
     networkmanagerapplet
 
-    # CLI tools
-    ripgrep
-    fd
-    eza
-    bat
-    fzf
-    jq
+    # CLI tools (stable — unstable versions managed in Home Manager)
     tree
-    btop
 
     # File manager
     nemo-with-extensions
