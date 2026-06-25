@@ -34,6 +34,9 @@ in {
     package = pkgs.niri;
   };
 
+  # ── Xwayland (needed for X11 apps like WinApps/FreeRDP) ──
+  programs.xwayland.enable = true;
+
   # ── Display Manager ───────────────────────────────────────
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
@@ -63,6 +66,7 @@ in {
     slurp                # Screen region selector
     satty                # Screenshot editor
     wf-recorder          # Screen recorder
+    xwayland-satellite   # X11 support for niri 25.08+
 
     # Theming
     adwaita-icon-theme

@@ -58,7 +58,7 @@
       find = "fd";
       top = "btop";
       fetch = "fastfetch";
-      rebuild = "sudo nixos-rebuild switch --flake ~/nixos-config#default";
+      rs = "sudo nixos-rebuild switch --flake ~/nixos-config#default";
       update = "cd ~/nixos-config && nix flake update && sudo nixos-rebuild switch --flake ~/nixos-config#default";
       gc = "sudo nix-collect-garbage -d";
     };

@@ -46,6 +46,12 @@
           submodules = true;
           url = "https://github.com/ndfined-crp/ayugram-desktop/";
     };
+
+    # WinApps — run Windows apps on Linux via Podman/Docker
+    winapps = {
+      url = "github:winapps-org/winapps";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   # Binary cache for Noctalia — skip compiling locally
@@ -54,7 +60,7 @@
     extra-trusted-public-keys = [ "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4=" ];
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, niri, noctalia, ayugram-desktop, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, niri, noctalia, ayugram-desktop, winapps, ... }@inputs:
     let
       # System architecture — change per machine if needed
       system = "x86_64-linux";

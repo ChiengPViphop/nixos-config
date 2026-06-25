@@ -17,6 +17,7 @@ in {
     unstable.vscodium
     unstable.lazygit               # Git TUI
     unstable.delta                 # Better git diffs
+    unstable.opencode
 
     # ── CLI tools (unstable) ──────────────────────────────────
     unstable.ripgrep

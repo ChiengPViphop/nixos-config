@@ -59,6 +59,7 @@
       "wheel"
       "video"
       "audio"
+      "kvm"       # Required for WinApps (Podman/Docker needs /dev/kvm)
     ];
     shell = pkgs.fish;
   };
@@ -73,6 +74,11 @@
       auto-optimise-store = true;
       # Use all cores for builds
       max-jobs = "auto";
+
+      # Binary cache for WinApps (optional, speeds up builds)
+      substituters = [ "https://winapps.cachix.org/" ];
+      trusted-public-keys = [ "winapps.cachix.org-1:HI82jWrXZsQRar/PChgIx1unmuEsiQMQq+zt05CD36g=" ];
+      trusted-users = [ username ];
     };
     gc = {
       automatic = true;
@@ -95,6 +101,11 @@
     neovim
     micro
 
+    # Keybaord
+    fcitx5
+    fcitx5-m17n
+    qt6Packages.fcitx5-configtool
+
     # Networking
     networkmanagerapplet
 
@@ -111,6 +122,19 @@
 
     # Noctalia shell
     inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+
+    # WinApps — run Windows apps on Linux
+    inputs.winapps.packages.${pkgs.system}.winapps
+    inputs.winapps.packages.${pkgs.system}.winapps-launcher  # optional GUI launcher
+
+    # Podman compose (for WinApps Windows VM)
+    podman-compose
+
+    # FreeRDP (needed for testing RDP connection standalone)
+    freerdp
+
+    # dialog (needed by winapps-setup dependency check)
+    dialog
   ];
 
   # ── Fonts ─────────────────────────────────────────────────
@@ -135,6 +159,16 @@
   programs.dconf.enable = true;
 
   programs.nix-ld.enable = true;
+
+  # ── Podman (WinApps backend) ─────────────────────────────
+  virtualisation.podman = {
+    enable = true;
+    defaultNetwork.settings.dns_enabled = true;
+  };
+
+  # Required for WinApps folder sharing with the host
+  boot.kernelModules = [ "ip_tables" "iptable_nat" ];
+
   programs.nix-ld.libraries = with pkgs; [
     # Add any common libraries if workerd complains about missing .so files later
     stdenv.cc.cc
