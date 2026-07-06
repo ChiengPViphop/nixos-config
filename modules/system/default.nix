@@ -135,6 +135,9 @@
 
     # dialog (needed by winapps-setup dependency check)
     dialog
+
+    #extra
+    flatpak
   ];
 
   # ── Fonts ─────────────────────────────────────────────────

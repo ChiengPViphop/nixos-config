@@ -53,5 +53,7 @@ in {
     unstable.obsidian
     unstable.libreoffice-fresh
     unstable.tradingview
+    unstable.pdfarranger
+    unstable.inkscape-with-extensions
   ];
 }
