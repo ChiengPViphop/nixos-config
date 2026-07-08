@@ -42,6 +42,19 @@ in {
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
 
+  # ── GDM wallpaper via dconf ────────────────────────────────
+  programs.dconf.profiles.gdm.databases = [{
+    settings = {
+      "org/gnome/desktop/background" = {
+        picture-uri = "file:///home/phouvongviphop/Pictures/Wallpapers/abstract-dark.png";
+        picture-uri-dark = "file:///home/phouvongviphop/Pictures/Wallpapers/abstract-dark.png";
+      };
+      "org/gnome/desktop/screensaver" = {
+        picture-uri = "file:///home/phouvongviphop/Pictures/Wallpapers/abstract-dark.png";
+      };
+    };
+  }];
+
   # ── XDG Portal for Wayland apps ──────────────────────────
   xdg.portal = {
     enable = true;
@@ -101,8 +114,6 @@ in {
     };
   };
 
-  # ── KDE Connect / NetworkManager applet ──────────────────
-  programs.kdeconnect.enable = true;
 
   # ── Power management ──────────────────────────────────────
   services.upower.enable = true;

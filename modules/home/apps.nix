@@ -55,5 +55,10 @@ in {
     unstable.tradingview
     unstable.pdfarranger
     unstable.inkscape-with-extensions
+    unstable.localsend
+    unstable.handbrake
+    unstable.kdePackages.kdenlive
+    unstable.gimp-with-plugins
+    unstable.krita
   ];
 }

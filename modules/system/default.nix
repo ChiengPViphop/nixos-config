@@ -18,6 +18,8 @@
   # ── Networking ────────────────────────────────────────────
   networking.networkmanager.enable = true;
   networking.firewall.enable = true;
+  networking.firewall.allowedTCPPorts = [ 8081 53317 19000 19001 ];
+  networking.firewall.allowedUDPPorts = [ 53317 ];
 
   # ── Time zone & locale ────────────────────────────────────
   time.timeZone = "Asia/Phnom_Penh";
