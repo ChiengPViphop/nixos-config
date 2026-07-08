@@ -119,6 +119,7 @@ rs
 ## Notes
 
 - The `hardware-configuration.nix` is machine-specific — regenerate it on each new PC
+- `hardware-configuration.nix` is in `.gitignore` — local regeneration won't dirty your git status
 - The `flake.lock` pins all dependency versions for reproducibility
 - Noctalia uses the Catppuccin dark theme via Home Manager, pulled from its binary cache (`noctalia.cachix.org`)
 - GTK apps use Adwaita-dark theme with dconf `color-scheme = prefer-dark`
