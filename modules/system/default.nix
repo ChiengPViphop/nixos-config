@@ -56,6 +56,7 @@
   users.users.${username} = {
     isNormalUser = true;
     description = "Phouvongviphop Chieng";
+    initialPassword = "changeme";  # ← change immediately after first login
     extraGroups = [
       "networkmanager"
       "wheel"

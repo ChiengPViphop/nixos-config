@@ -38,17 +38,24 @@ Reproducible NixOS configuration with Niri Wayland compositor, Noctalia shell, a
 ## Quick Start on a Fresh Machine
 
 1. Install NixOS (any desktop install is fine)
-2. Clone this repo to `~/nixos-config`
+2. Clone this repo:
+   ```bash
+   git clone https://github.com/ChiengPViphop/nixos-config.git ~/nixos-config
+   ```
+   > **For pushing changes** (optional): SSH is also configured — `git remote set-url origin git@github.com:ChiengPViphop/nixos-config.git`
 3. Generate hardware config:
    ```bash
    sudo nixos-generate-config --show-hardware-config > ~/nixos-config/hardware-configuration.nix
    ```
-4. **Edit `flake.nix` for your machine** — see [Machine-Specific Values](#machine-specific-values) below
+4. **Adapt `flake.nix` to your machine** — open it and change:
+   - `username` — set to **your** username
+   - `hostname` — pick a unique hostname
+   - `system` — `"aarch64-linux"` if you're on ARM (default is x86_64)
 5. Build:
    ```bash
    cd ~/nixos-config && sudo nixos-rebuild switch --flake .#default
    ```
-6. Reboot
+6. Reboot and log in with password: **`changeme`** (run `passwd` immediately)
 
 ### Machine-Specific Values
 
