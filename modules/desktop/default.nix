@@ -1,7 +1,7 @@
 # ~/nixos-config/modules/desktop/default.nix
 # Niri Wayland compositor + display manager configuration
 
-{ config, pkgs, lib, inputs, ... }:
+{ config, pkgs, lib, username, inputs, ... }:
 
 let
   # Script to launch Niri from display manager
@@ -10,15 +10,17 @@ let
     export XCURSOR_THEME=capitaine-cursors
     export XCURSOR_SIZE=24
 
-    # wayland session variables
+    # Wayland session variables
     export NIXOS_OZONE_WL=1
     export MOZ_ENABLE_WAYLAND=1
     export _JAVA_AWT_WM_NONREPARENTING=1
     export QT_QPA_PLATFORM=wayland
     export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
     export SDL_VIDEODRIVER=wayland
-    export GBM_BACKEND=nvidia-drm
     export CLUTTER_BACKEND=wayland
+
+    # Set GBM backend for NVIDIA GPUs (safe to leave on any GPU)
+    export GBM_BACKEND=nvidia-drm
 
     # Start niri
     exec niri session start
@@ -46,11 +48,11 @@ in {
   programs.dconf.profiles.gdm.databases = [{
     settings = {
       "org/gnome/desktop/background" = {
-        picture-uri = "file:///home/phouvongviphop/Pictures/Wallpapers/abstract-dark.png";
-        picture-uri-dark = "file:///home/phouvongviphop/Pictures/Wallpapers/abstract-dark.png";
+        picture-uri = "file:///home/${username}/Pictures/Wallpapers/abstract-dark.png";
+        picture-uri-dark = "file:///home/${username}/Pictures/Wallpapers/abstract-dark.png";
       };
       "org/gnome/desktop/screensaver" = {
-        picture-uri = "file:///home/phouvongviphop/Pictures/Wallpapers/abstract-dark.png";
+        picture-uri = "file:///home/${username}/Pictures/Wallpapers/abstract-dark.png";
       };
     };
   }];
