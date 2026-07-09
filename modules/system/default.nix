@@ -103,6 +103,7 @@
     pciutils
     neovim
     micro
+    epson-201401w
 
     # Keybaord
     fcitx5
