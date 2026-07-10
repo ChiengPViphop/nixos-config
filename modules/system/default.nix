@@ -51,6 +51,7 @@
 
   # ── Printing ──────────────────────────────────────────────
   services.printing.enable = true;
+  services.printing.drivers = [ pkgs.epson-201401w ];
 
   # ── User account ──────────────────────────────────────────
   users.users.${username} = {
@@ -103,7 +104,7 @@
     pciutils
     neovim
     micro
-    epson-201401w
+    
 
     # Keybaord
     fcitx5
