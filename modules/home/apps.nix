@@ -60,6 +60,6 @@ in {
     unstable.kdePackages.kdenlive
     unstable.gimp-with-plugins
     unstable.krita
-    unstable.epson-201401w
+   
   ];
 }
