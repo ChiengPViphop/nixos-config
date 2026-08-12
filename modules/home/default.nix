@@ -61,6 +61,7 @@
       rs = "sudo nixos-rebuild switch --flake ~/nixos-config#default";
       update = "cd ~/nixos-config && nix flake update && sudo nixos-rebuild switch --flake ~/nixos-config#default";
       gc = "sudo nix-collect-garbage -d";
+      anime = "~/.local/bin/ani-cli";
     };
   };
 
@@ -150,6 +151,12 @@
       };
       window.opacity = 0.95;
       colors.draw_bold_text_with_bright_colors = true;
+      # Ctrl+C copies when text is selected (like other apps).
+      # Ctrl+Shift+C sends ^C (SIGINT), since plain Ctrl+C is now taken.
+      keyboard.bindings = [
+        { key = "C"; mods = "Control"; action = "Copy"; }
+        { key = "C"; mods = "Control|Shift"; chars = builtins.fromJSON ''"\u0003"''; }
+      ];
     };
   };
 
@@ -210,6 +217,9 @@
     gtk4.extraConfig = {
       gtk-application-prefer-dark-theme = 1;
     };
+    gtk4.extraCss = ''
+      @import url("noctalia.css");
+    '';
   };
 
   # ── QT theming ────────────────────────────────────────────
@@ -245,6 +255,9 @@
       videos = "$HOME/Videos";
     };
   };
+
+  # ── PATH additions ─────────────────────────────────────────
+  home.sessionPath = [ "$HOME/.local/bin" ];
 
   # ── Let Home Manager manage itself ────────────────────────
   programs.home-manager.enable = true;

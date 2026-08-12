@@ -41,6 +41,13 @@
       # Omit inputs.nixpkgs.follows to use the binary cache (cachix)
     };
 
+    # Noctalia Greeter — greetd login screen matching Noctalia
+    # No inputs.nixpkgs.follows: package needs wlroots_0_20 (not in nixos-25.05),
+    # so it builds against its own pinned unstable nixpkgs.
+    noctalia-greeter = {
+      url = "github:noctalia-dev/noctalia-greeter";
+    };
+
     ayugram-desktop = {
           type = "git";
           submodules = true;
@@ -60,7 +67,7 @@
     extra-trusted-public-keys = [ "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4=" ];
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, niri, noctalia, ayugram-desktop, winapps, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, niri, noctalia, noctalia-greeter, ayugram-desktop, winapps, ... }@inputs:
     let
       # System architecture — change per machine if needed
       system = "x86_64-linux";

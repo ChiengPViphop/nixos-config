@@ -83,9 +83,10 @@
         Mod+Return                           hotkey-overlay-title="Open Terminal" { spawn "alacritty"; }
         Mod+A                                hotkey-overlay-title="Open App Launcher: noctalia" { spawn-sh "noctalia msg panel-toggle launcher"; }
         Mod+B                                hotkey-overlay-title="Open Browser: brave" { spawn "brave"; }
-        Mod+ALT+L                            hotkey-overlay-title="Lock Screen: niri lock" { spawn "niri" "msg" "lock-session"; }
-        Mod+Shift+Q                          hotkey-overlay-title="Session Menu: niri power-menu" { spawn "niri" "msg" "power-menu"; }
+        Mod+ALT+L                            hotkey-overlay-title="Lock Screen: niri lock" { spawn "noctalia" "msg" "lock-session"; }
+        Mod+Shift+Q                          hotkey-overlay-title="Session Menu: niri power-menu" { spawn "noctalia" "msg" "power-menu"; }
         Mod+E                                hotkey-overlay-title="File Manager" { spawn "nemo"; }
+        Mod+N                                { spawn-sh "noctalia msg panel-toggle noctalia/notes:panel"; }
 
         // Media Controls
         XF86AudioRaiseVolume                 allow-when-locked=true { spawn-sh "noctalia msg brightness-up"; }

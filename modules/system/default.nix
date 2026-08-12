@@ -49,9 +49,24 @@
     pulse.enable = true;
   };
 
+  # ── OpenGL / Graphics ────────────────────────────────────
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
+
+  # ── Steam ─────────────────────────────────────────────────
+  programs.steam.enable = true;
+
   # ── Printing ──────────────────────────────────────────────
   services.printing.enable = true;
   services.printing.drivers = [ pkgs.epson-201401w ];
+
+  # udev rules for Gecko POS printer (Epson 04b8:08d1) over USB
+  services.udev.extraRules = ''
+    SUBSYSTEM=="usb", ATTR{idVendor}=="04b8", ATTR{idProduct}=="08d1", MODE="0666", GROUP="users", TAG+="uaccess"
+    SUBSYSTEM=="usb", ATTR{idClass}=="07", MODE="0666", GROUP="users", TAG+="uaccess"
+  '';
 
   # ── User account ──────────────────────────────────────────
   users.users.${username} = {
@@ -105,12 +120,8 @@
     neovim
     micro
     epson-201401w
-    
+    openssl
 
-    # Keybaord
-    fcitx5
-    fcitx5-m17n
-    qt6Packages.fcitx5-configtool
 
     # Networking
     networkmanagerapplet

@@ -19,8 +19,8 @@ let
     export SDL_VIDEODRIVER=wayland
     export CLUTTER_BACKEND=wayland
 
-    # Set GBM backend for NVIDIA GPUs (safe to leave on any GPU)
-    export GBM_BACKEND=nvidia-drm
+    # GBM backend for graphics
+    export GBM_BACKEND=drm
 
     # Start niri
     exec niri session start
@@ -28,7 +28,10 @@ let
 
 in {
   # ── Import Niri flake module ──────────────────────────────
-  imports = [ inputs.niri.nixosModules.niri ];
+  imports = [
+    inputs.niri.nixosModules.niri
+    inputs.noctalia-greeter.nixosModules.default
+  ];
 
   # ── Niri ──────────────────────────────────────────────────
   programs.niri = {
@@ -39,23 +42,28 @@ in {
   # ── Xwayland (needed for X11 apps like WinApps/FreeRDP) ──
   programs.xwayland.enable = true;
 
-  # ── Display Manager ───────────────────────────────────────
-  services.xserver.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
-  # ── GDM wallpaper via dconf ────────────────────────────────
-  programs.dconf.profiles.gdm.databases = [{
+  # ── Noctalia Greeter (greetd login screen) ───────────────
+  # The module enables greetd + accounts-daemon and sets the
+  # default_session command to noctalia-greeter-session.
+  programs.noctalia-greeter = {
+    enable = true;
     settings = {
-      "org/gnome/desktop/background" = {
-        picture-uri = "file:///home/${username}/Pictures/Wallpapers/abstract-dark.png";
-        picture-uri-dark = "file:///home/${username}/Pictures/Wallpapers/abstract-dark.png";
+      session.default = "niri";
+      user.default = username;
+      appearance = {
+        scheme = "Catppuccin";
+        theme_mode = "dark";
       };
-      "org/gnome/desktop/screensaver" = {
-        picture-uri = "file:///home/${username}/Pictures/Wallpapers/abstract-dark.png";
+      cursor = {
+        theme = "capitaine-cursors";
+        size = 24;
+        path = "${pkgs.capitaine-cursors}/share/icons";
+      };
+      keyboard = {
+        layout = "us";
       };
     };
-  }];
+  };
 
   # ── XDG Portal for Wayland apps ──────────────────────────
   xdg.portal = {

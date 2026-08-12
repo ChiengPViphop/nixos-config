@@ -60,6 +60,12 @@ in {
     unstable.kdePackages.kdenlive
     unstable.gimp-with-plugins
     unstable.krita
-   
+    unstable.opencode-desktop
+    unstable.steam
+    unstable.proton-vpn
+
+    # ── ani-cli v4.15+ (local git repo) ──────────────────────────
+    # system package is outdated/broken — using ~/ani-cli/ani-cli via wrapper
+    unstable.botan3              # AES-256-GCM crypto for allanime scraping
   ];
 }
