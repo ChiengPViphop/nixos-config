@@ -244,6 +244,9 @@
   };
   xdg = {
     enable = true;
+    # Preferred terminal for Terminal=true desktop entries (used by
+    # xdg-terminal-exec when launchers open apps like micro).
+    configFile."xdg-terminals.list".text = "alacritty.desktop\n";
     userDirs = {
       enable = true;
       createDirectories = true;

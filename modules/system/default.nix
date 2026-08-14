@@ -119,6 +119,10 @@
     pciutils
     neovim
     micro
+    # Resolves the default terminal for apps with Terminal=true (e.g. micro
+    # launched from the app launcher). Without it, gio fails with
+    # "Unable to find terminal required for application".
+    xdg-terminal-exec
     epson-201401w
     openssl
 
