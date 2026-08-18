@@ -58,6 +58,12 @@
   # ── Steam ─────────────────────────────────────────────────
   programs.steam.enable = true;
 
+  # ── Android (adb + udev rules + adbusers group) ──────────
+  programs.adb.enable = true;
+
+  # Accept Android SDK licenses (androidenv)
+  nixpkgs.config.android_sdk.accept_license = true;
+
   # ── Printing ──────────────────────────────────────────────
   services.printing.enable = true;
   services.printing.drivers = [ pkgs.epson-201401w ];
@@ -79,6 +85,7 @@
       "video"
       "audio"
       "kvm"       # Required for WinApps (Podman/Docker needs /dev/kvm)
+      "adbusers"  # Android device access via adb
     ];
     shell = pkgs.fish;
   };
@@ -119,6 +126,8 @@
     pciutils
     neovim
     micro
+    # Python 3 (needed by Hermes skill scripts, e.g. search.py)
+    python3
     # Resolves the default terminal for apps with Terminal=true (e.g. micro
     # launched from the app launcher). Without it, gio fails with
     # "Unable to find terminal required for application".

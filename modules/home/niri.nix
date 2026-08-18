@@ -272,5 +272,8 @@
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
     XDG_CURRENT_DESKTOP = "niri";
     XDG_SESSION_TYPE = "wayland";
+    # SVG icon loader for GTK apps (Android Studio etc. crash without it:
+    # gtkiconhelper.c:495 ensure_surface_for_gicon assertion)
+    GDK_PIXBUF_MODULE_FILE = "${pkgs.librsvg}/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache";
   };
 }

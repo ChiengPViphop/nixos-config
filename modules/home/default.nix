@@ -44,6 +44,13 @@
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
+      # Hermes in-app terminal inherits __HM_SESS_VARS_SOURCED=1, which makes
+      # hm-session-vars.fish return early (ANDROID_HOME etc. never exported).
+      # Clear the guard and re-source so session vars always apply.
+      if set -q __HM_SESS_VARS_SOURCED
+        set -e __HM_SESS_VARS_SOURCED
+        source (sed -n 's/^source //p' ~/.config/fish/config.fish | head -1)
+      end
       set -U fish_greeting
       fish_vi_key_bindings
       starship init fish | source
@@ -62,6 +69,7 @@
       update = "cd ~/nixos-config && nix flake update && sudo nixos-rebuild switch --flake ~/nixos-config#default";
       gc = "sudo nix-collect-garbage -d";
       anime = "~/.local/bin/ani-cli";
+      emulator = "env QT_QPA_PLATFORM=xcb emulator";  # Qt wayland plugin missing from Android emulator
     };
   };
 
